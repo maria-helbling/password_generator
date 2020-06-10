@@ -1,6 +1,6 @@
 # password_generator
 Generates a strong password based on user criteria. Below is the use story and acceptance criteria presented by the client.
-The [live version of the page](#) can be found here.
+The [live version of the page](https://maria-helbling.github.io/password_generator/) can be found here.
 
 ## User Story
 
@@ -29,3 +29,37 @@ THEN a password is generated that matches the selected criteria
 WHEN the password is generated
 THEN the password is either displayed in an alert or written to the page
 ```
+## Final product
+Using javascript the application generates a unique random password based on acceptance criteria above.
+
+Site view before password generates:
+![screenshot of site before button click](#)
+
+Prompt view:
+![screenshot of site while user is prompted](#)
+
+Password generated view:
+![screenshot of generated password](#)
+
+## Setup
+To clone the repo:
+
+```
+git clone https://github.com/maria-helbling/password_generator.git
+```
+## Credits
+The code base and styling for basic site was provided by client.
+
+## License
+Built by Maria Helbling This application is released under [MIT](/license.txt) license.
+
+## Contributing
+To contribute to this application, create a pull request. Here are the steps needed for doing that:
+
+- Fork the repo
+- Create a feature branch (git checkout -b NAME-HERE)
+- Commit your new feature (git commit -m 'Add some feature')
+- Push your branch (git push)
+- Create a new Pull Request
+
+Following a code review, your feature will be merged.
