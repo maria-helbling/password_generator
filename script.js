@@ -32,7 +32,7 @@ generatePassword = () => {
   if (parseInt(pwLength)>7 && parseInt(pwLength)<129) {
         pwLength = parseInt(pwLength);
   } else {
-        alert(`That was not a valid input, please start over!`);
+        alert(`That was not a valid PW length input, please start over!`);
         return "";
   }
   
@@ -53,18 +53,22 @@ generatePassword = () => {
     return ""        
   }
 
-  //generate password
+  //generate password body for all but the last few characters
   let pwString="";
-  for (let j = 0; j < pwLength; j++) {
+  for (let j = 0; j < pwLength-validator; j++) {
     let num = Math.floor(Math.random()*validator);
     //randomly pick one of the randomising functions
     let component = functArray[num]();
     pwString = `${pwString}${component}`;
   }
 
+  // This workaround ensures the pw includes at least one of each chosen character type
+  for (i=0; i<validator; i++){
+    pwString =`${pwString}${functArray[i]()}`;
+  }
+
   return pwString
-  
-  //TODO: verify pw includes all needed characters
+
 }
 
 // Add event listener to generate button
