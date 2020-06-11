@@ -1,4 +1,5 @@
-# password_generator
+# Password generator
+
 Generates a strong password based on user criteria. Below is the use story and acceptance criteria presented by the client.
 The [live version of the page](https://maria-helbling.github.io/password_generator/) can be found here.
 
@@ -33,13 +34,16 @@ THEN the password is either displayed in an alert or written to the page
 Using javascript the application generates a unique random password based on acceptance criteria above.
 
 Site view before password generates:
-![screenshot of site before button click](#)
 
-Prompt view:
-![screenshot of site while user is prompted](#)
+![screenshot of site before button click](screenshots/screenshot_start.png)
+
+Prompt examples:
+
+![screenshot of site while user is prompted](screenshots/screenshot_prompts.png)
 
 Password generated view:
-![screenshot of generated password](#)
+
+![screenshot of generated password](screenshots/screenshot_result.PNG)
 
 ## Setup
 To clone the repo:
