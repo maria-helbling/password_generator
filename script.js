@@ -2,8 +2,6 @@
 var generateBtn = document.querySelector("#generate");
 var specialCharacters = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 var letters = "abcdefghijklmnopqrstuvwxyz";
-var userInput = [];
-var pwLength;
 var prompts = [`Include lowercase letters?`, `Include uppercase letters?`,`Include numbers?`,`Include special characters?`]
 
 // Write password to the #password input
@@ -15,22 +13,22 @@ function writePassword() {
 
 }
 
-// functions to generate random symbol, number and letter
+// functions to generate random lowercase, uppercase, number and character
+randomLetterL = () => letters[Math.floor(Math.random()*letters.length)]
+randomLetterU = () => randomLetterL().toUpperCase()
+randomNumber = () => Math.floor(Math.random()*10);
 randomCharacter = () => specialCharacters[Math.floor(Math.random()*specialCharacters.length)]
 
-randomNumber = () => Math.floor(Math.random()*10);
-
-randomLetterL = () => letters[Math.floor(Math.random()*letters.length)]
-
-randomLetterU = () => randomLetterL().toUpperCase()
+//put the functions in an array in the same order as relevant prompts
 var allFunct = [randomLetterL, randomLetterU, randomNumber, randomCharacter];
-var functArray = [];
 
 // PW generator function
 generatePassword = () => {
+  
   // user input on PW length btw 8 and 128 inclusive
-  pwLength = prompt(`Hello! Welcome to your PW generator. \n\n Tell me how long do you need your PW to be. \n\n NB! Only numbers between 8 and 128 inclusive`)
-  // input is validated
+   let pwLength = prompt(`Hello! Welcome to your PW generator. \n\n Tell me how long do you need your PW to be. \n\n NB! Only numbers between 8 and 128 inclusive`);
+
+  // input is validated, if not integer within range then alert and exit function
   if (parseInt(pwLength)>7 && parseInt(pwLength)<129) {
         pwLength = parseInt(pwLength);
   } else {
@@ -40,22 +38,34 @@ generatePassword = () => {
   
   // get user input on if they need lowercase, uppercase, numeric, and/or special characters
   // identify functions needed to meet the spec and add them to array
-  let validator = 0 
-  for (i=0; i<prompts.length; i++) {
+  var functArray = [];
+  let validator = 0 ;
+  for (let i=0; i<prompts.length; i++) {
     if (confirm(prompts[i])) {
         functArray.push(allFunct[i]);
-        validator++
+        validator++;
       }
   }
-                            
-  // input is validated, at least one character type should be selected, otherwise alert and exit function
-    if (validator===0) {
+
+  // input is validated: at least one character type should be selected, otherwise alert and exit function
+  if (validator===0) {
     alert(`You need at least one type of character in your password for it to work.`)
     return ""        
   }
 
   //generate password
+  let pwString="";
+  for (let j = 0; j < pwLength; j++) {
+    let num = Math.floor(Math.random()*validator);
+    //randomly pick one of the randomising functions
+    let component = functArray[num]();
+    pwString = `${pwString}${component}`;
+  }
+
+  return pwString
   
+  //TODO: verify pw includes all needed characters
 }
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
